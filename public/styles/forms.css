@@ -1,0 +1,39 @@
+form hr {
+  border-color: orange;
+  margin: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: antiquewhite;
+  text-align: left;
+  padding: 0 1.2rem;
+}
+
+input,
+textarea {
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  width: 90%;
+  border: none;
+  font: inherit;
+}
+
+#image-upload-controle {
+  display: flex;
+  align-items: center;
+}
+
+#image-upload-controle input {
+  max-width: 15rem;
+}
+
+#image-upload-controle img {
+  display: none;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
