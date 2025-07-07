@@ -1,6 +1,8 @@
 const mongoDbStore = require("connect-mongodb-session");
 const expressSession = require("express-session");
 
+  const isProduction = process.env.NODE_ENV
+
 function createSessionStore() {
   const MongoDbStore = mongoDbStore(expressSession);
   const store = new MongoDbStore({
