@@ -19,7 +19,9 @@ function createSessionConfig() {
     saveUninitialized: false,
     store: createSessionStore(),
     cookie: {
-      maxAge: 2 * 24 * 60 * 60 * 1000, //two days
+ maxAge: 2 * 24 * 60 * 60 * 1000, // two days
+      secure: isProduction,           // only send cookies over HTTPS in production
+      sameSite: isProduction ? "none" : "lax", // allow cross-site cookies if deployed
     },
   };
 }

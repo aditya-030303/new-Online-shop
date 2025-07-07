@@ -23,6 +23,10 @@ const orderRoutes = require("./routes/orders.routes");
 
 const app = express();
 
+const sessionConfig = createSessionConfig();
+
+app.use(expressSession(sessionConfig));
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -31,9 +35,7 @@ app.use("/products/assets", express.static("product-data")); //for serving image
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const sessionConfig = createSessionConfig();
 
-app.use(expressSession(sessionConfig));
 app.use(csurf());
 app.use(cartMiddleware);
 app.use(updateCartPricesMiddleware);
