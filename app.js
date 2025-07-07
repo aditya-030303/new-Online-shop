@@ -27,6 +27,15 @@ const sessionConfig = createSessionConfig();
 
 app.use(expressSession(sessionConfig));
 
+app.use((req, res, next) => {
+  res.locals.csrfToken = req.csrfToken();
+  res.locals.isAuth = req.session.isAuthenticated;
+  res.locals.isAdmin = req.session.user?.isAdmin;
+  res.locals.cart = req.session.cart || { totalQuantity: 0 };
+  next();
+});
+
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -52,6 +61,8 @@ app.use("/admin", protectRoutesMiddleware, adminRoutes); //which will filter out
 
 app.use(notFoundMiddleWare);
 app.use(errorHandlerMiddleWare);
+
+
 
 db.connectToDatabse()
   .then(function () {
